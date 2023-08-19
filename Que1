@@ -1,0 +1,13 @@
+#TWO SUM
+class Solution(object):
+    def twoSum(self, nums, target):
+        numMap = {}
+        n = len(nums)
+
+        # Build the hash table
+        for i in range(n):
+            com = target - nums[i]
+            if com in numMap:
+                return [numMap[com], i]
+            numMap[nums[i]] = i
+        return[]
