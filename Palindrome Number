@@ -1,0 +1,29 @@
+class Solution(object):
+    def isPalindrome(self, x):
+        y = str(x)
+        mid = 0
+        stack = []
+
+        if len(y)==1:
+            return True
+
+        if len(y)%2==0:
+            mid = int(len(y)/2)
+            rev = y[0:mid:1]
+            return (y == rev+rev[::-1]) 
+        if len(y)%2!=0:
+            # for (ind,i) in enumerate(y):
+            #     if i not in stack:
+            #         stack.append(i)
+            #     else:
+            #         while i in stack:
+            #             stack.pop()
+            # if len(stack) != 0:
+            #     # print('not')
+            #     return False
+            # else:
+            #     # print('ok')
+            #     return True
+            mid = int(len(y)/2)
+            rev = y[0:mid:1]
+            return (y[mid+1::]==rev[::-1])
