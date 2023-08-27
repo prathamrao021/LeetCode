@@ -1,0 +1,36 @@
+class Solution(object):
+    def search(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: int
+        """
+        pivot = 0
+        found_pivot = False
+        high = len(nums) - 1
+        low = 0
+        left_arr = []
+        right_arr = []
+            
+        if nums is sorted:
+            
+            while found_pivot == False:
+                mid = (high + low)//2
+                if (nums[mid] >= nums[0] and nums[mid] > nums[mid+1]):
+                    pivot = mid
+                    found_pivot = True
+                elif (nums[mid] >= nums[0] and nums[mid] < nums[mid+1]):
+                    low = mid+1
+                elif (nums[mid] < nums[0]):
+                    high = mid-1
+                # print(pivot)
+    
+        left_arr = nums[0:pivot+1]
+        right_arr = nums[pivot+1:]
+        
+        if (target in left_arr):
+            return left_arr.index(target)
+        elif (target in right_arr):
+            return right_arr.index(target)+len(left_arr)
+        else:
+            return -1
