@@ -1,0 +1,21 @@
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        buy = prices[0]
+        sell = prices[0]
+        stack = [0]
+        for (ind,i) in enumerate(prices):
+            if (i<buy):
+                buy = min(buy,i)
+                sell = i
+            elif (i>buy):
+                sell = max(i,sell)
+            temp = stack[-1]
+            if(temp < sell-buy):
+                stack.append(sell-buy)
+        high = 0
+        return stack[-1]
+
