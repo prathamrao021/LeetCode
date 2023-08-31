@@ -1,0 +1,23 @@
+import math
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        row_siz = len(matrix)
+        col_siz = len(matrix[0])
+        low = 0
+        high = (row_siz*col_siz)-1
+        # print(row_siz, col_siz, high)
+        while(low<=high):
+            mid = math.floor((low+high)/2)
+            row = mid//col_siz
+            col = mid%col_siz
+            # print(low, high)
+            if(matrix[row][col] == target):
+                return True
+            elif(matrix[row][col] > target):
+                high = mid-1
+            else:
+                # print('h')
+                # print(low,high)
+                low = mid+1
+        return False
+
