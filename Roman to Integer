@@ -1,0 +1,27 @@
+class Solution(object):
+    def romanToInt(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        arr = "IVXLCDM"
+        dict_1 = {'I':1,'V':5,'X':10,'L':50,'C':100,'D':500,'M':1000}
+        stack = []
+        a_4 = ['IV','XL','CD']
+        a_9 = ['IX','XC','CM']
+        counter = 0
+        total = 0
+        for (ind,i) in enumerate(s):
+            if (len(stack) == 0 or dict_1[i] <= dict_1[stack[-1]]):
+                stack.append(i)
+            elif(dict_1[i] > dict_1[stack[-1]]):
+                temp_char = stack.pop()
+                print(temp_char+i)
+                if((temp_char+i) in a_4):
+                    total += 4*(10**(a_4.index((temp_char+i))))
+                elif(((temp_char+i) in a_9)):
+                    total += 9*(10**(a_9.index((temp_char+i))))
+        for i in range(len(stack)):
+            j = stack.pop()
+            total += dict_1[j]
+        return(total)
