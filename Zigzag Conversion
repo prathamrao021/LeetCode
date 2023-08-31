@@ -1,0 +1,65 @@
+class Solution(object):
+    def convert(self, s, numRows):
+        """
+        :type s: str
+        :type numRows: int
+        :rtype: str
+        """
+        def pairs(nums):
+            total = 0
+            x_cor = 0
+            y_cor = 0
+            dou_arr = []
+            if nums == 1:
+                return [[1]]
+            if nums == 2:
+                return [[2]]
+            for i in range(nums):
+                total = (nums-1)*2
+                x_cor = total-(i*2)
+                y_cor = total-x_cor
+                if x_cor == 0:
+                    dou_arr.append([y_cor])
+                elif y_cor == 0:
+                    dou_arr.append([x_cor])
+                else:
+                    dou_arr.append([x_cor,y_cor])
+            return (dou_arr)
+
+        arr_ret = pairs(numRows)
+        final_str = ''
+        counter = 0
+        temp_str = ''
+        swap = 0
+        if len(s) == numRows:
+            return s
+        if numRows == 1:
+            return s
+        if numRows == 2:
+            temp_str = s[0::2]
+            temp_str1 = s[1::2]
+            return (temp_str+temp_str1)
+        while len(s) != len(final_str):
+            add = counter
+            temp_str = s[add]
+            swap = 0
+
+            while True:
+                if len(arr_ret[counter]) == 2:
+                    add += arr_ret[counter][swap]
+                    if add > len(s)-1:
+                        break
+                    if swap == 1: swap = 0
+                    elif swap == 0: swap = 1
+                else:
+                    add += arr_ret[counter][0]
+                    if add > len(s)-1:
+                        break
+                temp_str += s[add]
+            final_str += temp_str
+            if counter < numRows-1:
+                counter += 1 
+            else:
+                break
+        return(final_str)
+        print(final_str)
