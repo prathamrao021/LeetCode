@@ -1,0 +1,39 @@
+class Solution:
+    def myAtoi(self, s: str) -> int:
+        final_str = ''
+        s = s.strip()
+        dou_arr = s.split(' ')
+        op_count = 0
+        neg = False
+        
+        for (ind,i) in enumerate(dou_arr[0]):
+            if (i.isalpha()):
+                break
+            if (i in ['+','-','/','*']):
+                op_count += 1
+                
+                if(op_count > 1):
+                    break
+                if(i == "-"):
+                    if(ind != 0):
+                        break
+                    else:
+                        neg = True
+            if (i.isnumeric()):
+                # print(i)
+                # op_count =0
+                # print(i)
+                final_str += i
+            if (i == '.'):
+                break
+        if(len(final_str)==0):
+            return 0
+        if neg:
+            # print(final_str)
+            final_str = '-'+final_str
+        if(int(final_str) >= (2**31)-1):
+            return (int((2**31)-1))
+        elif(int(final_str)<=(2**31)*(-1)):
+            return (int(2**31)*(-1))
+        else:
+            return(int(final_str))
