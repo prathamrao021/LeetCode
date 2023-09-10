@@ -1,0 +1,36 @@
+class Solution:
+    def threeSumClosest(self, nums: List[int], target: int) -> int:
+        nearest = float('inf')
+        answer = 0
+        nums.sort()
+        # for i in range(len(nums)):
+        #     if nums[i] >= 0:
+        #         index_pos = i
+        #         break
+        # print(nums,index_pos)
+        
+        for i in range(len(nums)-2):
+            if i > 0 and nums[i] == nums[i-1]:
+                continue
+            left = len(nums)-1
+            right = i+1
+            if (target == nums[i]+nums[right]+nums[left]):
+                answer = target 
+                break
+            while left > right:
+                total = nums[i]+nums[right]+nums[left]
+                temp_dist = total-target
+                # print(i,temp_dist)
+                if temp_dist > 0:
+                    left -= 1
+                elif temp_dist < 0:
+                    right += 1
+                    temp_dist = -temp_dist
+                elif temp_dist == 0:
+                    nearest = 0
+                    answer = total
+                    break
+                if(nearest > temp_dist):
+                    answer = total
+                    nearest = temp_dist
+        return(answer)
