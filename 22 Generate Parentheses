@@ -1,0 +1,14 @@
+class Solution:
+    def generateParenthesis(self, n: int):
+        count_open = 0
+        count_close = 0
+        answer = []
+        def repeatative(count_open, count_close, curr):
+            if(count_open<n):
+                repeatative(count_open+1, count_close, curr+'(')
+            if(count_open-count_close>0):
+                repeatative(count_open, count_close+1,curr+')')
+            if(count_open==n and count_open-count_close == 0):
+                answer.append(curr)             
+        repeatative(count_open, count_close, '')
+        return(answer)
