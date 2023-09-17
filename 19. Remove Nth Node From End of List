@@ -1,0 +1,14 @@
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        forth = head
+        back = head
+
+        for i in range(n):
+            forth = forth.next
+        if forth == None:
+            return head.next
+        while forth.next != None:
+            back = back.next
+            forth = forth.next
+        back.next = back.next.next
+        return head
