@@ -1,0 +1,15 @@
+class Solution:
+    def generate(self, numRows: int) -> List[List[int]]:
+        final_ans = [[1],[1,1]]
+        if numRows == 1:
+            return([[1]])
+        elif numRows == 2:
+            return([[1],[1,1]])
+        else:
+            for i in range(numRows-2):
+                temp_ans = [1]
+                for j in range(len(final_ans[-1])-1):
+                    temp_ans.append(final_ans[-1][j]+final_ans[-1][j+1])
+                temp_ans.append(1)
+                final_ans.append(temp_ans)
+        return final_ans
