@@ -1,0 +1,24 @@
+class Solution(object):
+    def searchRange(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        low = 0
+        high = len(nums)-1
+    
+        while low <= high:
+            if nums[low] < target:
+                low += 1
+
+            if nums[high] > target:
+                high -= 1
+
+            if nums[high] == target and  nums[low] == target:
+                break
+        
+        if low > high:
+            return([-1,-1])
+        else:
+            return([low,high])
