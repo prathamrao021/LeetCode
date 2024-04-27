@@ -27,6 +27,7 @@ class Solution(object):
             return (dou_arr)
 
         arr_ret = pairs(numRows)
+        print(arr_ret)
         final_str = ''
         counter = 0
         temp_str = ''
@@ -61,5 +62,8 @@ class Solution(object):
                 counter += 1 
             else:
                 break
-        return(final_str)
         print(final_str)
+        return(final_str)
+
+s = Solution()
+s.convert('PAYPALISHIRING',5)
